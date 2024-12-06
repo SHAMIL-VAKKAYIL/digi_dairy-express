@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>signin</h1>
+    <form action="">
+        <input type="email" name="" placeholder="email" onchange="getEmail(event)">
+        <input type="password" name="" placeholder="password" onchange="getPassword(event)">
+        <button onclick="signin()">signin</button>
+    </form>
+        <a href="/signup"> did'nt have a account</a>
+
+
+
+    <script>
+        let email = ''
+        let password = ''
+
+
+        function getEmail(e) {
+            email = e.target.value
+        }
+        function getPassword(e) {
+            password = e.target.value
+        }
+
+        async function signin() {
+            try {
+                const res = await fetch('/signin', {
+                    method: 'post',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ email, password })
+                })
+                const data = await res.json()
+                if (res.ok) {
+                    window.location.href = '/home'
+                }else{
+                alert(data.message || 'somthing wrog')
+                }
+            } catch (err) {
+                console.log(err)
+            }
+        }
+    </script>
+</body>
+
+</html>
