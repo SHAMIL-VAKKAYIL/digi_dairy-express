@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>all Diary</h1>
+
+    {{#each diaries}}
+    <p>{{title}}</p>
+    <p>{{upDate}}</p>
+    <img src="/images/{{image}}" alt="">
+    <p>{{bio}}</p>
+    {{/each}}
+
+
+</body>
+</html>

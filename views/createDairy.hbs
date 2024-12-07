@@ -14,12 +14,12 @@
         <input type="text" name="" placeholder="Title" id="title">
         <input type="file" name="" id="image">
         <input type="text" name="" placeholder="write you todays diary" id="bio">
-        <button onclick="submitDiary()">submit</button>
+        <button type="button" onclick="submitDiary()">submit</button>
 
     </form>
 
     <script>
-       async function submitDiary() {
+        async function submitDiary() {
             const userid = localStorage.getItem('userid')
             const title = document.getElementById('title').value
             const image = document.getElementById('image').files[0]
@@ -30,16 +30,17 @@
             formdatas.append('image', image)
             formdatas.append('bio', bio)
             formdatas.append('userid', userid)
-                console.log('im here')
+            console.log('im here')
 
             try {
-                await fetch('/createDairy',{
-                    method:'post',
-                    body:formdatas
+                await fetch('/createDairy', {
+                    method: 'post',
+                    body: formdatas
                 })
-                
+                alert('Diary submitted successfully');
+
             } catch (err) {
-                alert('post faild succefuly',err)
+                alert('post faild succefuly')
             }
 
 

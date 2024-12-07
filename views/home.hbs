@@ -15,7 +15,14 @@
     </form>
     <a href="/profile">profile</a><br>
     <a href="/createDairy">createDairy</a><br>
-    <a href="/viewDairy">viewDairy</a>
+    <a id="user_Diary">viewDairy</a>
+
+
+    <script>
+        const userid = localStorage.getItem('userid')
+        console.log(userid,'sdfjsdl')
+        document.getElementById('user_Diary').href = `/viewDiary?userid=${userid}`
+    </script>
 </body>
 
 </html>
