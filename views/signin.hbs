@@ -41,6 +41,7 @@
                 })
                 const data = await res.json()
                 if (res.ok) {
+                    localStorage.setItem('userid',data.userid)
                     window.location.href = '/home'
                 }else{
                 alert(data.message || 'somthing wrog')

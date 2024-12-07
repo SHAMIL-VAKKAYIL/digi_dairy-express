@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>Diary creation</h1>
+    <form action="">
+        <p>22/03/2025</p>
+        <input type="text" name="" placeholder="Title" id="title">
+        <input type="file" name="" id="image">
+        <input type="text" name="" placeholder="write you todays diary" id="bio">
+        <button onclick="submitDiary()">submit</button>
+
+    </form>
+
+    <script>
+       async function submitDiary() {
+            const userid = localStorage.getItem('userid')
+            const title = document.getElementById('title').value
+            const image = document.getElementById('image').files[0]
+            const bio = document.getElementById('bio').value
+
+            const formdatas = new FormData()
+            formdatas.append('title', title)
+            formdatas.append('image', image)
+            formdatas.append('bio', bio)
+            formdatas.append('userid', userid)
+                console.log('im here')
+
+            try {
+                await fetch('/createDairy',{
+                    method:'post',
+                    body:formdatas
+                })
+                
+            } catch (err) {
+                alert('post faild succefuly',err)
+            }
+
+
+        }
+    </script>
+</body>
+
+</html>

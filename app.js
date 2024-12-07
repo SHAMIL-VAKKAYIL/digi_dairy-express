@@ -9,6 +9,7 @@ const Mongostore = require("connect-mongo")
 const   mainRouter  = require('./routes/mainRouter')
 const {  authRouter } = require('./routes/authRouter');
 const   homeRouter  = require('./routes/homeRouter')
+const dairyRouter =require('./routes/dairyRouter')
 
 
 var app = express();
@@ -49,6 +50,7 @@ app.use(
 app.use('/', mainRouter)
 app.use('/', authRouter)
 app.use('/', homeRouter)
+app.use('/',dairyRouter)
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
