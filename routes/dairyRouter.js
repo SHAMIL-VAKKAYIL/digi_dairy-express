@@ -43,12 +43,27 @@ router.get('/viewDiary', async (req, res) => {
 
     try {
         const diaries = await diarySchema.find({ userid: userid })
-        
+
         res.render('viewDiary', { diaries })
     } catch (error) {
         res.status(400).json({ message: error })
     }
 })
+
+router.get('/DiarybyDate', async (req, res) => {
+
+    const { date } = req.query
+    console.log(date,'hfhgv');
+
+    try {
+        const diaries = await diarySchema.find({ upDate: date })
+
+        res.render('viewDiary', { diaries })
+    } catch (error) {
+        res.status(400).json({ message: error })
+    }
+})
+
 
 
 module.exports = router

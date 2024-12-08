@@ -18,7 +18,7 @@ router.post('/signup', async (req, res) => {
             name, email, password
         })
         await newUser.save()
-        res.status(200).json({message:'succefull'})
+        res.status(200).json({ message: 'succefull' })
 
     } catch (error) {
         res.status(400).json({ message: 'faild to signup' })
@@ -39,10 +39,9 @@ router.post('/signin', async (req, res) => {
             req.session.userID = user._id
             req.session.email = user.email
             let userid = user._id
-            console.log(userid,' userid');
-
 
             res.status(200).json({ userid })
+            
         } else {
             return res.status(400).json({ message: ' password is wrong' })
         }
@@ -54,9 +53,22 @@ router.post('/signin', async (req, res) => {
 
 })
 
+router.get('/userdetails', async (req, res) => {
+    try {
+        const { userid } = req.query
+        console.log(userid);
+        
+        const user = await userSchema.find({ _id:userid })
+        console.log(user,'jhfgj')
+        res.render('profile', { user })
+    } catch (error) {
+        res.status(400).json({ message: error })
 
-router.get('/logout',(req,res)=>{
-    req.session.destroy(()=>{
+    }
+})
+
+router.get('/logout', (req, res) => {
+    req.session.destroy(() => {
         res.redirect('/signin')
     })
 })
