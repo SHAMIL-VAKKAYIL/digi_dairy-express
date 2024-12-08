@@ -12,21 +12,29 @@
     <h1>all Diary</h1>
     <form action="">
         <input type="date" name="" id="date">
-        <a id="findbyID" onclick="filter()">find</a>
+        <a id="findbyDate" onclick="filter()">find</a>
     </form>
 
     {{#each diaries}}
-    <p>{{title}}</p>
-    <p>{{upDate}}</p>
-    <img class="image" src="/images/{{image}}" alt="">
-    <p>{{bio}}</p>
+    <a onclick="getId(event)" data-id="{{_id}}">
+        <p>{{title}}</p>
+        <p>{{upDate}}</p>
+        <img class="image" src="/images/{{image}}" alt="">
+        <p>{{bio}}</p>
+    </a>
     {{/each}}
 
     <script>
         const filter = () => {
             const bdate = document.getElementById('date').value
             const date = bdate.split('-').reverse().join('/')
-            document.getElementById('findbyID').href = `/DiarybyDate?date=${date}`
+            document.getElementById('findbyDate').href = `/DiarybyDate?date=${date}`
+        }
+
+        const getId = (e) => {
+            const DiaryId = e.currentTarget.getAttribute('data-id')
+            e.currentTarget.href = `/Diary?id=${DiaryId}`
+            console.log(DiaryId, 'id')
         }
 
 

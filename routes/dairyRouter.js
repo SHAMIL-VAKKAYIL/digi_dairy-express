@@ -15,6 +15,7 @@ const storage = multer.diskStorage({
 })
 const uploadImg = multer({ storage: storage })
 
+//diary creation
 router.post('/createDairy', uploadImg.single('image'), async (req, res) => {
     try {
 
@@ -35,7 +36,7 @@ router.post('/createDairy', uploadImg.single('image'), async (req, res) => {
         res.status(400).json({ message: error })
     }
 })
-
+//diary showing
 router.get('/viewDiary', async (req, res) => {
 
     const { userid } = req.query
@@ -50,10 +51,10 @@ router.get('/viewDiary', async (req, res) => {
     }
 })
 
+//diary filtring
 router.get('/DiarybyDate', async (req, res) => {
 
     const { date } = req.query
-    console.log(date,'hfhgv');
 
     try {
         const diaries = await diarySchema.find({ upDate: date })
@@ -64,6 +65,46 @@ router.get('/DiarybyDate', async (req, res) => {
     }
 })
 
+//fetch single diary
+router.get('/Diary', async (req, res) => {
 
+    const { id } = req.query
+
+    try {
+        const diary = await diarySchema.find({ _id: id })
+
+        res.render('singleDiary', { diary })
+    } catch (error) {
+        res.status(400).json({ message: error })
+    }
+})
+
+// diary editing
+router.put('/updateDairy', uploadImg.single('image'), async (req, res) => {
+    try {
+
+        const { bio, title, id } = req.body
+        const imgFile = req.file
+        console.log(bio, id);
+        await diarySchema.findOneAndUpdate({ _id: id }, { title: title, bio: bio, image: imgFile.originalname })
+
+        res.status(200).json({ message: 'diary updated' })
+
+    } catch (error) {
+        res.status(400).json({ message: error })
+    }
+})
+//delete diary
+router.delete('/deleteDairy', async (req, res) => {
+    const { id } = req.body
+    try {
+        await diarySchema.findOneAndDelete({ _id: id })
+        res.status(200).json({ message: 'deleted' })
+
+    } catch (error) {
+        res.status(400).json({ message: error })
+
+    }
+})
 
 module.exports = router

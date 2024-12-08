@@ -1,11 +1,81 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="/stylesheets/style.css">
+
 </head>
+
 <body>
-    
+    {{#each diary}}
+    <div class="">
+        <p style="display: none;" id="Id">{{_id}}</p>
+        <p>{{title}}</p>
+        <p>{{upDate}}</p>
+        <img class="image" src="/images/{{image}}" alt="">
+        <p>{{bio}}</p>
+    </div>
+    <button onclick="edit()">edit</button><br>
+    <button onclick="del()">delete</button><br>
+    {{/each}}
+
+    <div id="edSection" style="display: none;">
+        <input type="text" name="" placeholder="new Title" id="title">
+        <input type="file" name="" id="image">
+        <input type="text" name="" placeholder="update your todays diary" id="bio">
+        <button type="button" onclick="submit()">submit</button>
+    </div>
 </body>
+<script>
+    const edit = () => {
+        document.getElementById('edSection').style.display = 'block'
+    }
+    const submit = async () => {
+        const title = document.getElementById('title').value
+        const image = document.getElementById('image').files[0]
+        const bio = document.getElementById('bio').value
+        const id = document.getElementById('Id').innerText
+        console.log(id, 'iddd')
+
+        const upformdata = new FormData()
+        upformdata.append('title', title)
+        upformdata.append('image', image)
+        upformdata.append('bio', bio)
+        upformdata.append('id', id)
+        try {
+            await fetch('/updateDairy', {
+                method: 'put',
+                body: upformdata
+            })
+            document.getElementById('edSection').style.display = 'none'
+            alert('Diary updated successfully');
+
+        } catch (err) {
+            alert('diary faild succefuly')
+        }
+
+    }
+    const del = async () => {
+        const id = document.getElementById('Id').innerText
+
+        try {
+            await fetch('/deleteDairy', {
+                method: 'delete',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ id })
+            })
+            alert('Diary deleted successfully');
+            window.location.href='/home'
+        } catch (err) {
+            alert('diary faild succefuly')
+        }
+
+    }
+</script>
+
 </html>

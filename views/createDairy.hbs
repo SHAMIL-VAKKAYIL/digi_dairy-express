@@ -10,7 +10,7 @@
 <body>
     <h1>Diary creation</h1>
     <form action="">
-        <p>22/03/2025</p>
+        <p id="cdate"></p>
         <input type="text" name="" placeholder="Title" id="title">
         <input type="file" name="" id="image">
         <input type="text" name="" placeholder="write you todays diary" id="bio">
@@ -19,6 +19,13 @@
     </form>
 
     <script>
+                const currentDate = new Date();
+        const day = String(currentDate.getDate()).padStart(2, '0');
+        const month = String(currentDate.getMonth() + 1).padStart(2, '0');
+        const year = currentDate.getFullYear();
+        document.getElementById('cdate').innerText = `${day}/${month}/${year}`
+
+
         async function submitDiary() {
             const userid = localStorage.getItem('userid')
             const title = document.getElementById('title').value
