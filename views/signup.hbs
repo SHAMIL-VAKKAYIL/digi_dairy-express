@@ -5,20 +5,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="">
+    <link rel="stylesheet" href="/stylesheets/signup.css">
 </head>
+<style>
+    
+</style>
 
 <body>
-    <h1>signup</h1>
-    <form action="">
-        <input type="text" name="" placeholder="name" onchange="getName(event)">
-        <input type="email" name="" placeholder="email" onchange="getEmail(event)">
-        <input type="password" name="" placeholder="password" onchange="getPassword(event)">
-        <button onclick="signup()">signup</button>
-    </form>
-        <a href="/signin"> already have a account</a>
-
-
+    <div class="main">
+        <h1 class="head">Signup</h1>
+        <form action="">
+            <input type="text" name="" placeholder="name" onchange="getName(event)">
+            <input type="email" name="" placeholder="email" onchange="getEmail(event)">
+            <input type="password" name="" placeholder="password" onchange="getPassword(event)">
+            <button onclick="signup()">signup</button>
+        </form><br>
+        <a href="/signin"> Already have a account ? Signin</a>
+    </div>
 
     <script>
         let name = ''

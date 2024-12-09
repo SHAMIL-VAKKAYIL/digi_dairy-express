@@ -17,7 +17,9 @@
     <p>{{email}} </p>
     <p>{{password}} </p>
     <button onclick="edit()">edit</button><br>
-
+    <form action="/logout">
+        <button type="submit">logout</button>
+    </form>
     {{/each}}
     <div id="edSection" style="display:none ;">
         <input type="text" name="" placeholder="new name" id="newname">

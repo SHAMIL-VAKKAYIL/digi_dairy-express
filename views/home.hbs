@@ -5,18 +5,42 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="/stylesheets/home.css">
 </head>
+<style>
+    
+</style>
 
 <body>
-    <h1>Home</h1>
-    <form action="/logout">
-        <button type="submit">logout</button>
+    <div class="main">
+        <div class="navbar">
 
-    </form>
-    <a id="user_Details">profile</a><br>
-    <a href="/createDairy">createDairy</a><br>
-    <a id="user_Diary">viewDairy</a>
+            <h1>Home</h1>
+            <a class="profile" id="user_Details">profile</a>
+        </div>
+        <div class="home_container">
+            <div class="image">
+                <img src="https://img.freepik.com/free-photo/handwriting-men-studying-education-creativity-reading-literature-internet-generated-by-ai_188544-26930.jpg?t=st=1733752122~exp=1733755722~hmac=32e0edbb309ddacd63018b71c68655d7f728f9e2df72ad08fc78cb8d280a3df8&w=1060"
+                    alt="">
+            </div>
+            <div class="intro">
+                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Earum error, consequatur sapiente voluptate
+                    repellat eos at aliquam id similique obcaecati culpa ut animi quae impedit quibusdam sint. Non,
+                    doloribus eum?</p>
+                <div class="buttons">
+                    <a class="btn" href="/createDairy">createDairy</a><br>
+                    <a class="btn" id="user_Diary">viewDairy</a>
+                </div>
+            </div>
+        </div>
 
+        <div class="footer">
+            <h3>Digi_Diary</h3>
+            <div class="copyright">
+                Copyright © 2024 - Digi_Diary.com
+            </div>
+        </div>
+    </div>
 
     <script>
         const userid = localStorage.getItem('userid')

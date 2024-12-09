@@ -5,16 +5,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="/stylesheets/signup.css">
 </head>
 
 <body>
-    <h1>signin</h1>
-    <form action="">
-        <input type="email" name="" placeholder="email" onchange="getEmail(event)">
-        <input type="password" name="" placeholder="password" onchange="getPassword(event)">
-        <button onclick="signin()">signin</button>
-    </form>
-        <a href="/signup"> don't have a account</a>
+    <div class="main">
+
+        <h1 class="head">signin</h1>
+        <form action="">
+            <input type="email" name="" placeholder="email" onchange="getEmail(event)">
+            <input type="password" name="" placeholder="password" onchange="getPassword(event)">
+            <button onclick="signin()">signin</button>
+        </form>
+        <a href="/signup"> Don't have a account? Signup</a>
+    </div>
 
 
 
@@ -41,10 +45,10 @@
                 })
                 const data = await res.json()
                 if (res.ok) {
-                    localStorage.setItem('userid',data.userid)
+                    localStorage.setItem('userid', data.userid)
                     window.location.href = '/home'
-                }else{
-                alert(data.message || 'somthing wrog')
+                } else {
+                    alert(data.message || 'somthing wrog')
                 }
             } catch (err) {
                 console.log(err)
