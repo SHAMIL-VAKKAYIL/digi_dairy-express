@@ -2,6 +2,7 @@ const router = require('express').Router()
 const diarySchema = require('../models/dairySchema')
 const multer = require('multer')
 const path = require('path')
+const { auth } = require('./authRouter.js')
 
 
 const storage = multer.diskStorage({
@@ -16,7 +17,7 @@ const storage = multer.diskStorage({
 const uploadImg = multer({ storage: storage })
 
 //diary creation
-router.post('/createDairy', uploadImg.single('image'), async (req, res) => {
+router.post('/createDairy', auth, uploadImg.single('image'), async (req, res) => {
     try {
 
         const { bio, userid, title } = req.body
@@ -37,7 +38,7 @@ router.post('/createDairy', uploadImg.single('image'), async (req, res) => {
     }
 })
 //diary showing
-router.get('/viewDiary', async (req, res) => {
+router.get('/viewDiary', auth, async (req, res) => {
 
     const { userid } = req.query
     console.log(userid);
@@ -66,7 +67,7 @@ router.get('/DiarybyDate', async (req, res) => {
 })
 
 //fetch single diary
-router.get('/Diary', async (req, res) => {
+router.get('/Diary', auth, async (req, res) => {
 
     const { id } = req.query
 
@@ -79,21 +80,48 @@ router.get('/Diary', async (req, res) => {
     }
 })
 
-// diary editing
-router.put('/updateDairy', uploadImg.single('image'), async (req, res) => {
+// diary image editing
+router.put('/updateImage', uploadImg.single('image'), async (req, res) => {
     try {
-
-        const { bio, title, id } = req.body
+        const { id } = req.body
         const imgFile = req.file
-        console.log(bio, id);
-        await diarySchema.findOneAndUpdate({ _id: id }, { title: title, bio: bio, image: imgFile.originalname })
+        await diarySchema.findOneAndUpdate({ _id: id }, { image: imgFile.originalname })
 
-        res.status(200).json({ message: 'diary updated' })
+        res.status(200).json({ message: 'diary image updated' })
 
     } catch (error) {
         res.status(400).json({ message: error })
     }
 })
+// diary title editing
+router.put('/updateTitle', async (req, res) => {
+    try {
+        const { id, title } = req.body
+        console.log(title);
+        console.log(id);
+
+
+        await diarySchema.findOneAndUpdate({ _id: id }, { title: title })
+
+        res.status(200).json({ message: 'diary title  updated' })
+
+    } catch (error) {
+        res.status(400).json({ message: error })
+    }
+})
+// diary bio editing
+router.put('/updateBio', async (req, res) => {
+    try {
+        const { id, bio } = req.body
+        await diarySchema.findOneAndUpdate({ _id: id }, { bio: bio })
+
+        res.status(200).json({ message: 'diary bio updated' })
+
+    } catch (error) {
+        res.status(400).json({ message: error })
+    }
+})
+
 //delete diary
 router.delete('/deleteDairy', async (req, res) => {
     const { id } = req.body

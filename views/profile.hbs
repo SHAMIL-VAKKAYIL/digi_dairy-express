@@ -16,8 +16,83 @@
     <p>{{name}} </p>
     <p>{{email}} </p>
     <p>{{password}} </p>
+    <button onclick="edit()">edit</button><br>
+
     {{/each}}
+    <div id="edSection" style="display:none ;">
+        <input type="text" name="" placeholder="new name" id="newname">
+        <button type="button" onclick="Nsubmit()">Change Name</button>
+        <input type="email" name="" id="newemail" placeholder="new email">
+        <button type="button" onclick="Esubmit()">Change email</button>
+        <input type="text" name="" placeholder="new password" id="newpass">
+        <button type="button" onclick="Psubmit()">Change Passowrd</button>
+    </div>
     <script>
+        const userid = localStorage.getItem('userid')
+        const edit = () => {
+            document.getElementById('edSection').style.display = 'block'
+        }
+
+        const Nsubmit = async () => {
+            const newname = document.getElementById('newname').value
+            try {
+                await fetch('/changeName', {
+                    method: 'put',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ newname, userid })
+                })
+                window.location.href = `/userdetails?userid=${userid}`
+                document.getElementById('edSection').style.display = 'none'
+
+                alert('user updated successfully');
+
+            } catch (err) {
+                alert('user faild succefuly')
+            }
+
+        }
+        const Esubmit = async () => {
+            const newemail = document.getElementById('newemail').value
+            try {
+                await fetch('/changeEmail', {
+                    method: 'put',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ newemail, userid })
+                })
+                window.location.href = `/userdetails?userid=${userid}`
+                document.getElementById('edSection').style.display = 'none'
+
+                alert('user updated successfully');
+
+            } catch (err) {
+                alert('user faild succefuly')
+            }
+
+        }
+        const Psubmit = async () => {
+            const newpassword = document.getElementById('newpass').value
+            try {
+                await fetch('/changePassword', {
+                    method: 'put',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ newpassword, userid })
+                })
+                window.location.href = `/userdetails?userid=${userid}`
+                document.getElementById('edSection').style.display = 'none'
+
+                alert('user updated successfully');
+
+            } catch (err) {
+                alert('user faild succefuly')
+            }
+
+        }
 
     </script>
 </body>

@@ -24,33 +24,35 @@
 
     <div id="edSection" style="display: none;">
         <input type="text" name="" placeholder="new Title" id="title">
+        <button type="button" onclick="Tsubmit()">change Title</button>
         <input type="file" name="" id="image">
+        <button type="button" onclick="Isubmit()">change Image</button>
         <input type="text" name="" placeholder="update your todays diary" id="bio">
-        <button type="button" onclick="submit()">submit</button>
+        <button type="button" onclick="Bsubmit()">change Bio</button>
     </div>
 </body>
 <script>
+
+    const id = document.getElementById('Id').innerText
     const edit = () => {
         document.getElementById('edSection').style.display = 'block'
     }
-    const submit = async () => {
-        const title = document.getElementById('title').value
+
+
+    const Isubmit = async () => {
         const image = document.getElementById('image').files[0]
-        const bio = document.getElementById('bio').value
-        const id = document.getElementById('Id').innerText
-        console.log(id, 'iddd')
 
         const upformdata = new FormData()
-        upformdata.append('title', title)
         upformdata.append('image', image)
-        upformdata.append('bio', bio)
         upformdata.append('id', id)
         try {
-            await fetch('/updateDairy', {
+            console.log(id)
+            await fetch('/updateImage', {
                 method: 'put',
                 body: upformdata
             })
             document.getElementById('edSection').style.display = 'none'
+            window.location.href = `/Diary?id=${id}`
             alert('Diary updated successfully');
 
         } catch (err) {
@@ -58,6 +60,54 @@
         }
 
     }
+    const Tsubmit = async () => {
+        const title = document.getElementById('title').value
+
+        const upformdata = new FormData()
+        upformdata.append('title', title)
+        upformdata.append('id', id)
+
+        try {
+            await fetch('/updateTitle', {
+                method: 'put',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ id, title })
+            })
+            document.getElementById('edSection').style.display = 'none'
+            window.location.href = `/Diary?id=${id}`
+            alert('Diary updated successfully');
+
+        } catch (err) {
+            alert('diary faild succefuly')
+        }
+
+    }
+    const Bsubmit = async () => {
+        const bio = document.getElementById('bio').value
+
+        const upformdata = new FormData()
+        upformdata.append('bio', bio)
+        upformdata.append('id', id)
+        try {
+            await fetch('/updateBio', {
+                method: 'put',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ id, bio })
+            })
+            document.getElementById('edSection').style.display = 'none'
+            window.location.href = `/Diary?id=${id}`
+            alert('Diary updated successfully');
+
+        } catch (err) {
+            alert('diary faild succefuly')
+        }
+
+    }
+
     const del = async () => {
         const id = document.getElementById('Id').innerText
 
@@ -70,12 +120,13 @@
                 body: JSON.stringify({ id })
             })
             alert('Diary deleted successfully');
-            window.location.href='/home'
+            window.location.href = '/home'
         } catch (err) {
             alert('diary faild succefuly')
         }
 
     }
+
 </script>
 
 </html>
