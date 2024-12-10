@@ -5,21 +5,46 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="/stylesheets/creatdiary.css">
+    <style>
+       
+    </style>
 </head>
 
 <body>
-    <h1>Diary creation</h1>
-    <form action="">
-        <p id="cdate"></p>
-        <input type="text" name="" placeholder="Title" id="title">
-        <input type="file" name="" id="image">
-        <input type="text" name="" placeholder="write you todays diary" id="bio">
-        <button type="button" onclick="submitDiary()">submit</button>
+    <div class="main">
+        <div class="heading">
+            <h1>Write Your Diary </h1>
+        </div>
+        <div class="diary">
 
-    </form>
+            <form action="">
+                <div class="date_div">
+                    <p>Date:</p>
+                    <p class="date" id="cdate"></p>
+
+                </div>
+                <div class="diary_content">
+                    <div class="title">
+                        <p>Diary Title</p>
+                        <input type="text" name="" placeholder="Title" id="title">
+                    </div>
+                    <div class="img_file">
+                        <p>Upload Your Image</p>
+                        <input type="file" name="" id="image">
+                    </div>
+                    <div class="bio">
+                        <p>Enter Your Today's Diary</p>
+                        <textarea name="" id="bio" ></textarea>
+                    </div>
+                    <button type="button" onclick="submitDiary()">submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
 
     <script>
-                const currentDate = new Date();
+        const currentDate = new Date();
         const day = String(currentDate.getDate()).padStart(2, '0');
         const month = String(currentDate.getMonth() + 1).padStart(2, '0');
         const year = currentDate.getFullYear();

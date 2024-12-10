@@ -1,0 +1,79 @@
+body {
+    background-color: #F9F7F7;
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    align-items: center;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+.main {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.heading {
+    width: 90%;
+    display: flex;
+    justify-content: center;
+}
+
+.diary {
+    background-color: #f0f0f0;
+    border: 1px solid black;
+    border-radius: 5px;
+    width: 70%;
+    padding: 5%;
+    box-shadow: 2px -2px  3px 3px rgba(0, 0, 0, 0.152);
+}
+
+.date_div {
+    display: flex;
+    align-items: center;
+}
+
+.date {
+    text-decoration: underline;
+    text-underline-offset: 2px;
+}
+
+.diary_content {
+    display: flex;
+    flex-direction: column;
+    gap: 3vh;
+}
+
+.title input {
+    height: 6vh;
+    width: 100%;
+    font-size: 15px;
+    padding: 1%;
+    outline: none;
+    background-color: #f0f0f0;
+    border:1px solid black;
+    border-radius: 3px;
+
+}
+
+textarea {
+    border-radius: 3px;
+    height: 25vh;
+    width: 100%;
+    font-size: 15px;
+    padding: 1%;
+    box-sizing: border-box;
+    text-decoration: underline;
+    background-color: #f0f0f0;
+    text-underline-offset: 5px;
+    resize: none;
+    outline: none;
+}
+button{
+    height: 5vh;
+    border:0;
+    background-color: #112D4E;
+    color: #ffffff;
+
+}
