@@ -57,7 +57,7 @@ router.post('/signin', async (req, res) => {
 
 //userprofile
 
-router.get('/userdetails', async (req, res) => {
+router.get('/userdetails',auth, async (req, res) => {
     try {
         const { userid } = req.query
 

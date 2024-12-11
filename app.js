@@ -6,7 +6,6 @@ var logger = require('morgan');
 const mongoose = require('mongoose');
 const session = require("express-session")
 const Mongostore = require("connect-mongo")
-const   mainRouter  = require('./routes/mainRouter')
 const {  authRouter } = require('./routes/authRouter');
 const   homeRouter  = require('./routes/homeRouter')
 const dairyRouter =require('./routes/dairyRouter')
@@ -41,13 +40,12 @@ app.use(
       collectionName: 'session'
     }),
     cookie: {
-      maxAge: 24000 * 60 * 60
+      maxAge: 2400 * 60 * 60
     }
   })
 )
 
 
-app.use('/', mainRouter)
 app.use('/', authRouter)
 app.use('/', homeRouter)
 app.use('/',dairyRouter)

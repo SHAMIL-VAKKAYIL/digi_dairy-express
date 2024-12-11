@@ -5,29 +5,56 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="/stylesheets/profile.css">
 </head>
+<style>
+  
+</style>
 
 <body>
+    <div class="main">
+        <h1>
+            manage profile
+            <button onclick="edit()"><img src="/images/edit2.png" alt=""></button><br>
+        </h1>
+        {{#each user}}
+        <div class="Uitem">
+            <img src="/images/nameP.png" alt="">
+            <p>{{name}} </p>
+        </div>
+        <div class="Uitem">
+            <img src="/images/emailP.png" alt="">
+            <p>{{email}} </p>
+        </div>
+        <div class="Uitem">
+            <img src="/images/passwordP.png" alt="">
+            <p>{{password}} </p>
+        </div>
+        {{/each}}
+        <br><br>
+        <div class="filtering">
+            <form action="/logout">
+                <button type="submit"><img src="/images/signout.png" alt=""> Signout</button>
+            </form>
+        </div>
+        <br><br>
+        <div id="edSection" style="display:none ;">
+            <div>
+                <input type="text" name="" placeholder="new name" id="newname">
+                <button type="button" onclick="Nsubmit()">Change Name</button>
+            </div>
+            <br>
+            <div>
+                <input type="email" name="" id="newemail" placeholder="new email">
+                <button type="button" onclick="Esubmit()">Change email</button>
+            </div>
+            <br>
+            <div>
+                <input type="text" name="" placeholder="new password" id="newpass">
+                <button type="button" onclick="Psubmit()">Change Passowrd</button>
+            </div>
 
-    <h1>
-        profile
-    </h1>
-    {{#each user}}
-    <p>{{name}} </p>
-    <p>{{email}} </p>
-    <p>{{password}} </p>
-    <button onclick="edit()">edit</button><br>
-    <form action="/logout">
-        <button type="submit">logout</button>
-    </form>
-    {{/each}}
-    <div id="edSection" style="display:none ;">
-        <input type="text" name="" placeholder="new name" id="newname">
-        <button type="button" onclick="Nsubmit()">Change Name</button>
-        <input type="email" name="" id="newemail" placeholder="new email">
-        <button type="button" onclick="Esubmit()">Change email</button>
-        <input type="text" name="" placeholder="new password" id="newpass">
-        <button type="button" onclick="Psubmit()">Change Passowrd</button>
+        </div>
     </div>
     <script>
         const userid = localStorage.getItem('userid')

@@ -5,25 +5,43 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="/stylesheets/style.css">
+    <link rel="stylesheet" href="/stylesheets/viewDiary.css">
+    <style>
+
+    </style>
 </head>
 
 <body>
-    <h1>all Diary</h1>
-    <form action="">
-        <input type="date" name="" id="date">
-        <a id="findbyDate" onclick="filter()">find</a>
-    </form>
+    <div class="main">
+        <div class="filter">
+            <form action="">
+                <h3>Search by Date</h3>
+                <div class="inpfield">
+                    <input type="date" name="" id="date">
+                    <a id="findbyDate" onclick="filter()"><img src="/images/search.png" alt=""></a>
+                </div>
+            </form>
+        </div>
+        <br><br>
+        <h2>All Diaries:</h2>
 
-    {{#each diaries}}
-    <a onclick="getId(event)" data-id="{{_id}}">
-        <p>{{title}}</p>
-        <p>{{upDate}}</p>
-        <img class="image" src="/images/{{image}}" alt="">
-        <p>{{bio}}</p>
-    </a>
-    {{/each}}
-
+        <div class="diary_main">
+            {{#each diaries}}
+            <div class="diary_card">
+                <a onclick="getId(event)" data-id="{{_id}}">
+                    <div class="items">
+                        <p>Date:</p>
+                        <p>{{upDate}}</p>
+                    </div>
+                    <div class="items">
+                        <p>Title:</p>
+                        <p>{{title}}</p>
+                    </div>
+                </a>
+            </div>
+            {{/each}}
+        </div>
+    </div>
     <script>
         const filter = () => {
             const bdate = document.getElementById('date').value

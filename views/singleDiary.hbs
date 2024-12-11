@@ -5,34 +5,63 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="/stylesheets/style.css">
-
+    <link rel="stylesheet" href="/stylesheets/singleDiary.css">
+    <style>
+       
+    </style>
 </head>
 
 <body>
-    {{#each diary}}
-    <div class="">
-        <p style="display: none;" id="Id">{{_id}}</p>
-        <p>{{title}}</p>
-        <p>{{upDate}}</p>
-        <img class="image" src="/images/{{image}}" alt="">
-        <p>{{bio}}</p>
+    <div>
+        <br><br>
+        <div class="filtering">
+            <button onclick="edit()"><img class="filtbtn" src="/images/edit.png" alt=""></button><br>
+            <button onclick="del()"><img class="filtbtn" src="/images/trashcan.png" alt=""></button><br>
+        </div>
+        <br>
+        {{#each diary}}
+        <div class="diary_main">
+            <div class="diary_detail">
+                <p style="display: none;" id="Id">{{_id}}</p>
+                <div class="date_div">
+                    <p>Date:</p>
+                    <p>{{upDate}}</p>
+                </div>
+                <div class="title_div">
+                    <p>Title:</p>
+                    <p>{{title}}</p>
+                </div>
+                <div class="img_div">
+                    <img class="image" src="/images/{{image}}" alt="">
+                </div>
+                <div class="bio_div">
+                    <p>{{bio}}</p>
+                </div>
+            </div>
+        </div>
+        {{/each}}
+        <br><br>
+        <div id="edSection" class="editsection" style="display:none ;">
+            <div>
+                <input type="text" name="" placeholder="new Title" id="title">
+                <button class="btn" type="button" onclick="Tsubmit()">change Title</button>
+            </div>
+            <br>
+            <div>
+                <input type="file" name="" id="image">
+                <button class="btn" type="button" onclick="Isubmit()">change Image</button>
+            </div>
+            <br>
+            <div class="div_textarea">
+                <textarea name="" placeholder="update your diary bio" id="bio"></textarea>
+                <button class="btn" type="button" onclick="Bsubmit()">change Bio</button>
+            </div>
+        </div>
     </div>
-    <button onclick="edit()">edit</button><br>
-    <button onclick="del()">delete</button><br>
-    {{/each}}
-
-    <div id="edSection" style="display: none;">
-        <input type="text" name="" placeholder="new Title" id="title">
-        <button type="button" onclick="Tsubmit()">change Title</button>
-        <input type="file" name="" id="image">
-        <button type="button" onclick="Isubmit()">change Image</button>
-        <input type="text" name="" placeholder="update your todays diary" id="bio">
-        <button type="button" onclick="Bsubmit()">change Bio</button>
-    </div>
+    <br><br>
 </body>
 <script>
-
+    const userid=localStorage.getItem('userid')
     const id = document.getElementById('Id').innerText
     const edit = () => {
         document.getElementById('edSection').style.display = 'block'
@@ -120,7 +149,6 @@
                 body: JSON.stringify({ id })
             })
             alert('Diary deleted successfully');
-            window.location.href = '/home'
         } catch (err) {
             alert('diary faild succefuly')
         }

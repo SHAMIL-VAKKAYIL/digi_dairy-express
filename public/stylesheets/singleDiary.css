@@ -1,0 +1,141 @@
+body {
+    background-color: #F9F7F7;
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    width: 100%;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+.filtering {
+    display: flex;
+    margin: auto;
+    width: 80%;
+    justify-content: end;
+    gap: 2px;
+}
+
+button {
+    border: 0;
+    background-color: #112d4e;
+    padding: 5px;
+    padding-inline: -15px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all;
+    color: white;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+
+}
+
+.filtbtn {
+    width: 35%;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    object-fit: contain;
+    transition: all;
+}
+
+.filtbtn:hover {
+    scale: calc(1.1);
+}
+
+button:hover {
+    background-color: #0c2037;
+}
+
+.diary_main {
+    background-color: #f0f0f0;
+    border-radius: 5px;
+    width: 70%;
+    margin: auto;
+    padding: 5%;
+    box-shadow: 2px 2px 10px 0px #112d4e57;
+
+}
+
+.diary_detail {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.date_div {
+    display: flex;
+    width: 100%;
+}
+
+.title_div {
+    display: flex;
+    width: 100%;
+}
+
+.img_div {
+    display: flex;
+    width: 100%;
+}
+
+.bio_div {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+
+}
+
+.image {
+    object-fit: contain;
+    border-radius: 5px;
+    width: 40%;
+
+}
+
+.editsection {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    margin: auto;
+    gap: 10px;
+
+}
+.editsection button{
+
+    padding: 10px;
+}
+
+input {
+    height: 3vh;
+    width: 70%;
+    font-size: 15px;
+    padding: 1%;
+    outline: none;
+    background-color: #f0f0f0;
+    border: 1px solid black;
+    border-radius: 3px;
+
+}
+
+textarea {
+    border-radius: 3px;
+    height: 25vh;
+    width: 72%;
+    font-size: 15px;
+    padding: 1%;
+    box-sizing: border-box;
+    text-decoration: underline;
+    background-color: #f0f0f0;
+    text-underline-offset: 5px;
+    resize: none;
+    outline: none;
+}
+
+.editsection div {
+    display: flex;
+    gap: 10px;
+    align-items: end;
+}
+
+.btn {
+    height: 5vh;
+}
