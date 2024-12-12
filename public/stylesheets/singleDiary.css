@@ -87,7 +87,7 @@ button:hover {
 .image {
     object-fit: contain;
     border-radius: 5px;
-    width: 40%;
+    height: 50vh;
 
 }
 
