@@ -24,18 +24,18 @@
             <div class="diary_detail">
                 <p style="display: none;" id="Id">{{_id}}</p>
                 <div class="date_div">
-                    <p>Date:</p>
-                    <p>{{upDate}}</p>
+                    <h3>Date:</h3>
+                    <h3>{{upDate}}</h3>
                 </div>
                 <div class="title_div">
-                    <p>Title:</p>
-                    <p>{{title}}</p>
+                    <h3>Title:</h3>
+                    <h3 id="dtitle">{{title}}</h3>
                 </div>
                 <div class="img_div">
                     <img class="image" src="/images/{{image}}" alt="">
                 </div>
                 <div class="bio_div">
-                    <p>{{bio}}</p>
+                    <p id="dbio">{{bio}}</p>
                 </div>
             </div>
         </div>
@@ -43,7 +43,7 @@
         <br><br>
         <div id="edSection" class="editsection" style="display:none ;">
             <div>
-                <input type="text" name="" placeholder="new Title" id="title">
+                <input type="text" name=""  id="title">
                 <button class="btn" type="button" onclick="Tsubmit()">change Title</button>
             </div>
             <br>
@@ -63,6 +63,14 @@
 <script>
     const userid=localStorage.getItem('userid')
     const id = document.getElementById('Id').innerText
+
+    const dtitle=document.getElementById('dtitle').innerText
+    document.getElementById('title').value=dtitle
+
+    const dbio=document.getElementById('dbio').innerText
+    document.getElementById('bio').value=dbio
+
+
     const edit = () => {
         document.getElementById('edSection').style.display = 'block'
     }

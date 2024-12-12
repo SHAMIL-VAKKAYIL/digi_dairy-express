@@ -65,6 +65,7 @@ button:hover {
 .date_div {
     display: flex;
     width: 100%;
+    justify-content: end;
 }
 
 .title_div {

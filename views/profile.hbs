@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="/stylesheets/profile.css">
 </head>
 <style>
-  
+
 </style>
 
 <body>
@@ -20,15 +20,15 @@
         {{#each user}}
         <div class="Uitem">
             <img src="/images/nameP.png" alt="">
-            <p>{{name}} </p>
+            <p id="pname">{{name}} </p>
         </div>
         <div class="Uitem">
             <img src="/images/emailP.png" alt="">
-            <p>{{email}} </p>
+            <p id="pemail">{{email}} </p>
         </div>
         <div class="Uitem">
             <img src="/images/passwordP.png" alt="">
-            <p>{{password}} </p>
+            <p id="ppass">{{password}} </p>
         </div>
         {{/each}}
         <br><br>
@@ -40,7 +40,7 @@
         <br><br>
         <div id="edSection" style="display:none ;">
             <div>
-                <input type="text" name="" placeholder="new name" id="newname">
+                <input type="text" name="" value="" id="newname">
                 <button type="button" onclick="Nsubmit()">Change Name</button>
             </div>
             <br>
@@ -58,6 +58,15 @@
     </div>
     <script>
         const userid = localStorage.getItem('userid')
+        const pname = document.getElementById('pname').innerText
+        document.getElementById('newname').value = pname
+
+        const pemail = document.getElementById('pemail').innerText
+        document.getElementById('newemail').value = pemail
+        
+        const ppass = document.getElementById('ppass').innerText
+        document.getElementById('newpass').value = ppass
+
         const edit = () => {
             document.getElementById('edSection').style.display = 'block'
         }
