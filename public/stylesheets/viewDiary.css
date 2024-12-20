@@ -1,8 +1,11 @@
 body {
-    background-color: #F9F7F7;
+    background-image: url('/images/Dbackground.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
     display: flex;
     margin: 0;
-
+    min-height: 100vh;
     width: 100%;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
@@ -10,24 +13,46 @@ body {
 .main {
     width: 100%;
     display: flex;
-    align-items: center;
     flex-direction: column;
-    margin: auto;
+    
+    
 }
 
 
 .diary_main {
+    background-image: url('/images/Dbgpage.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
     display: flex;
-    width: 90%;
-    flex-wrap: wrap;
+    margin: auto;
+    padding: 10px;
+    flex-direction: column;
+    width: 50%;
+    height: 90%;
+    margin-top: 5vh;
+    margin-bottom: 10px;
+    overflow: scroll;
     gap: 10px;
 }
 
 .diary_card {
-    padding: 3%;
-    background-color: #f0f0f0;
-    border-radius: 5px;
-    box-shadow: 2px 2px 5px 0px #112d4e85;
+    cursor: pointer;
+    box-shadow:  2px 4px 5px #11121257;
+    padding-inline: 2%;
+    display: flex;
+    transition: all 1s;
+}
+.diary_card:hover {
+    
+    box-shadow:  0px 0px 0px #11121257;
+    
+}
+.diary_card_details{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    
 }
 
 .items{
@@ -36,35 +61,40 @@ body {
 }
 .filter{
     width: 100%;
-    background-color: #112D4E;
+    position: fixed;
+    display: flex;
+    color: #000;
+    box-shadow:  2px 4px 5px #11121257;
+}
+.back{
+    width: 30px;
     margin: auto;
-    height: 10vh;
-    color: #F9F7F7;
+    height: 30px;
+    object-fit: cover;
+    margin-left: 5px;
 }
 form{
     display: flex; 
     width: 100%;
-    height: 10vh;
+    height: 8vh;
     gap: 10px;
     justify-content: center;
-    align-items: center;
 }
+
 input{
     height: 5vh;
     width: 100%;
     padding-inline: 1%;
     outline: none;
     border: 0;
-    border-radius: 20px;
     border-top-right-radius: 0;
     border-bottom-right-radius: 0;
     background-color: transparent;
     border-right: 1px solid black;
+    font-size: 15px;
 
 }
-h2{
-    width: 90%;
-}
+
 form img{
     height: 2.5vh;
     margin-left: 5px;
@@ -73,14 +103,16 @@ form img{
 }
 .inpfield{
     height: 6vh;
-
     border: 0;
-    border-radius: 20px;
     padding-inline: 2%;
-    background-color: #F9F7F7;
-    border: 1px solid #112D4E;
+    border-bottom: 1px solid #112D4E;
     width: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+::-webkit-scrollbar{
+    width: 0;
+    height: 0;
 }

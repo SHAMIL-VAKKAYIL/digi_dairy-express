@@ -7,20 +7,23 @@
     <title>Document</title>
     <link rel="stylesheet" href="/stylesheets/singleDiary.css">
     <style>
-       
+
     </style>
 </head>
 
 <body>
+    <img src="/images/backbtn.png" class="back" onclick="back()" alt="">
     <div>
+
         <br><br>
-        <div class="filtering">
-            <button onclick="edit()"><img class="filtbtn" src="/images/edit.png" alt=""></button><br>
-            <button onclick="del()"><img class="filtbtn" src="/images/trashcan.png" alt=""></button><br>
-        </div>
+
         <br>
         {{#each diary}}
         <div class="diary_main">
+            <div class="filtering">
+                <button onclick="edit()"><img class="filtbtn" src="/images/edit.png" alt=""></button><br>
+                <button onclick="del()"><img class="filtbtn" src="/images/trashcan.png" alt=""></button><br>
+            </div>
             <div class="diary_detail">
                 <p style="display: none;" id="Id">{{_id}}</p>
                 <div class="date_div">
@@ -29,66 +32,97 @@
                 </div>
                 <div class="title_div">
                     <h3>Title:</h3>
-                    <h3 id="dtitle">{{title}}</h3>
+                    <input type="text" value={{title}} disabled id="dtitle">
                 </div>
                 <div class="img_div">
-                    <img class="image" src="/images/{{image}}" alt="">
+                    <input type="file" name="" id="image" onchange="previewImage()">
+                    <img src="/images/iedit.png"
+                        style="width: 5%; position: absolute; right: 2px; top:2px; padding: 5px; border:0; border-radius:5px ;background-color: white; display:none;"
+                        alt="" onclick="imgSelector()" id="imgSelect" srcset="">
+                    <img class="image" src="/images/{{image}}" id="imgDis" alt="">
                 </div>
                 <div class="bio_div">
-                    <p id="dbio">{{bio}}</p>
+                    <textarea name="" disabled id="dbio">{{bio}}</textarea>
+                </div>
+                <div class="btn_div" id="btn_div" style="display: none;">
+                    <button type="button" class="sbbtn" onclick="Update()">Update</button>
                 </div>
             </div>
         </div>
         {{/each}}
         <br><br>
-        <div id="edSection" class="editsection" style="display:none ;">
-            <div>
-                <input type="text" name=""  id="title">
-                <button class="btn" type="button" onclick="Tsubmit()">change Title</button>
-            </div>
-            <br>
-            <div>
-                <input type="file" name="" id="image">
-                <button class="btn" type="button" onclick="Isubmit()">change Image</button>
-            </div>
-            <br>
-            <div class="div_textarea">
-                <textarea name="" placeholder="update your diary bio" id="bio"></textarea>
-                <button class="btn" type="button" onclick="Bsubmit()">change Bio</button>
-            </div>
-        </div>
+
     </div>
     <br><br>
 </body>
 <script>
-    const userid=localStorage.getItem('userid')
+    const userid = localStorage.getItem('userid')
     const id = document.getElementById('Id').innerText
 
-    const dtitle=document.getElementById('dtitle').innerText
-    document.getElementById('title').value=dtitle
+    const dtitle = document.getElementById('dtitle')
+    const dbio = document.getElementById('dbio')
+    const dimg = document.getElementById('imgSelect')
 
-    const dbio=document.getElementById('dbio').innerText
-    document.getElementById('bio').value=dbio
+    const imgSelector = () => {
+        document.getElementById('image').click()
+    }
 
+    const previewImage = () => {
+        const file = document.getElementById('image').files[0]
+        const reader = new FileReader()
+
+        reader.onload = function (e) {
+            const imagePreview = document.getElementById('imgDis')
+            imagePreview.src = e.target.result
+
+        }
+        if (file) {
+            reader.readAsDataURL(file);
+        }
+    }
 
     const edit = () => {
-        document.getElementById('edSection').style.display = 'block'
+        console.log('hlo')
+        if (dtitle.disabled) {
+            dtitle.disabled = false
+            dbio.disabled = false
+            dtitle.style.borderBottom = '1px solid black'
+            dtitle.style.color = '#333131c7'
+            dbio.style.textDecoration = 'underline'
+            dbio.style.textUnderlineOffset = '5px'
+            dbio.style.color = '#333131c7'
+            dimg.style.display = 'block'
+            document.getElementById('btn_div').style.display = 'flex'
+
+        }
+        else {
+            dtitle.disabled = true
+            dbio.disabled = true
+        }
+    }
+    const back = () => {
+        window.history.back()
     }
 
 
-    const Isubmit = async () => {
+    const Update = async () => {
         const image = document.getElementById('image').files[0]
+        const title = document.getElementById('dtitle').value
+        const bio = document.getElementById('dbio').value
+        console.log(title)
 
         const upformdata = new FormData()
         upformdata.append('image', image)
+        upformdata.append('bio', bio)
+        upformdata.append('title', title)
         upformdata.append('id', id)
         try {
             console.log(id)
-            await fetch('/updateImage', {
+            await fetch('/updateDiary', {
                 method: 'put',
                 body: upformdata
             })
-            document.getElementById('edSection').style.display = 'none'
+            document.getElementById('btn_div').style.display = 'none'
             window.location.href = `/Diary?id=${id}`
             alert('Diary updated successfully');
 
@@ -97,53 +131,7 @@
         }
 
     }
-    const Tsubmit = async () => {
-        const title = document.getElementById('title').value
 
-        const upformdata = new FormData()
-        upformdata.append('title', title)
-        upformdata.append('id', id)
-
-        try {
-            await fetch('/updateTitle', {
-                method: 'put',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ id, title })
-            })
-            document.getElementById('edSection').style.display = 'none'
-            window.location.href = `/Diary?id=${id}`
-            alert('Diary updated successfully');
-
-        } catch (err) {
-            alert('diary faild succefuly')
-        }
-
-    }
-    const Bsubmit = async () => {
-        const bio = document.getElementById('bio').value
-
-        const upformdata = new FormData()
-        upformdata.append('bio', bio)
-        upformdata.append('id', id)
-        try {
-            await fetch('/updateBio', {
-                method: 'put',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ id, bio })
-            })
-            document.getElementById('edSection').style.display = 'none'
-            window.location.href = `/Diary?id=${id}`
-            alert('Diary updated successfully');
-
-        } catch (err) {
-            alert('diary faild succefuly')
-        }
-
-    }
 
     const del = async () => {
         const id = document.getElementById('Id').innerText

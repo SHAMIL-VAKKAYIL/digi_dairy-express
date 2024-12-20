@@ -12,10 +12,13 @@
 </head>
 
 <body>
+
+
     <div class="main">
         <div class="filter">
+            <img src="/images/backbtn.png" class="back" onclick="back()" alt="">
             <form action="">
-                <h3>Search by Date</h3>
+                <h3>Find by Date:</h3>
                 <div class="inpfield">
                     <input type="date" name="" id="date">
                     <a id="findbyDate" onclick="filter()"><img src="/images/search.png" alt=""></a>
@@ -23,18 +26,18 @@
             </form>
         </div>
         <br><br>
-        <h2>All Diaries:</h2>
+
 
         <div class="diary_main">
             {{#each diaries}}
             <div class="diary_card">
-                <a onclick="getId(event)" data-id="{{_id}}">
+                <a class="diary_card_details" onclick="getId(event)" data-id="{{_id}}">
                     <div class="items">
-                        <p>Date:</p>
-                        <p>{{upDate}}</p>
+
+                        <li> </li>
+                        <li type="none">{{upDate}}</li>
                     </div>
                     <div class="items">
-                        <p>Title:</p>
                         <p>{{title}}</p>
                     </div>
                 </a>
@@ -54,7 +57,9 @@
             e.currentTarget.href = `/Diary?id=${DiaryId}`
             console.log(DiaryId, 'id')
         }
-
+        const back = () => {
+            window.history.back()
+        }
 
     </script>
 </body>

@@ -1,5 +1,8 @@
 body {
-    background-color: #F9F7F7;
+    background-image: url('/images/Dbgpage.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
     height: 100svh;
     display: flex;
     margin: 0;
@@ -21,8 +24,7 @@ body {
     align-items: center;
     padding-inline: 20px;
     justify-content: space-between;
-    background-color: #112D4E;
-    color: white;
+    color: #112D4E;
 }
 .navbar img{
     height: 30px;
@@ -32,10 +34,7 @@ body {
     scale: calc(1.1);
 }
 
-.profile {
-    text-decoration: none;
-    color: white;
-}
+
 
 
 .home_container {
@@ -61,8 +60,8 @@ body {
         flex: 1;
         width: 0%;
         padding: 3px;
-        border-top: 3px solid #3f71af9e;
-        border-right: 3px solid #3f71af9e;
+        border-top: 3px solid #206bc69e;
+        border-right: 3px solid #236dc89e;
         border-top-right-radius: 10px;
         border-top-left-radius: 5px;
         border-bottom-right-radius: 5px;
@@ -74,8 +73,8 @@ body {
     flex: 1;
     width: 60%;
     padding: 3px;
-    border-top: 3px solid #3f71af9e;
-    border-right: 3px solid #3f71af9e;
+    border-top: 3px solid #206bc69e;
+    border-right: 3px solid #206bc69e;
     border-top-right-radius: 10px;
     border-top-left-radius: 5px;
     border-bottom-right-radius: 5px;
@@ -119,9 +118,8 @@ img {
 
 }
 .footer {
-    background-color: #112D4E;
     padding-inline: 20px;
-    color: #F9F7F7;
+    color: #112D4E;
     width: 100%;
     height: 18%;
     display: flex;

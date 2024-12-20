@@ -45,7 +45,7 @@ router.get('/viewDiary', auth, async (req, res) => {
 
     try {
         const diary = await diarySchema.find({ userid: userid })
-        const diaries=diary.reverse()
+        const diaries = diary.reverse()
 
         res.render('viewDiary', { diaries })
     } catch (error) {
@@ -81,42 +81,14 @@ router.get('/Diary', auth, async (req, res) => {
     }
 })
 
-// diary image editing
-router.put('/updateImage', uploadImg.single('image'), async (req, res) => {
+// diary  editing
+router.put('/updateDiary', uploadImg.single('image'), async (req, res) => {
     try {
-        const { id } = req.body
+        const { id, title, bio } = req.body
         const imgFile = req.file
-        await diarySchema.findOneAndUpdate({ _id: id }, { image: imgFile.originalname })
+        await diarySchema.findOneAndUpdate({ _id: id }, { image: imgFile.originalname, bio: bio, title: title })
 
-        res.status(200).json({ message: 'diary image updated' })
-
-    } catch (error) {
-        res.status(400).json({ message: error })
-    }
-})
-// diary title editing
-router.put('/updateTitle', async (req, res) => {
-    try {
-        const { id, title } = req.body
-        console.log(title);
-        console.log(id);
-
-
-        await diarySchema.findOneAndUpdate({ _id: id }, { title: title })
-
-        res.status(200).json({ message: 'diary title  updated' })
-
-    } catch (error) {
-        res.status(400).json({ message: error })
-    }
-})
-// diary bio editing
-router.put('/updateBio', async (req, res) => {
-    try {
-        const { id, bio } = req.body
-        await diarySchema.findOneAndUpdate({ _id: id }, { bio: bio })
-
-        res.status(200).json({ message: 'diary bio updated' })
+        res.status(200).json({ message: 'diary  updated' })
 
     } catch (error) {
         res.status(400).json({ message: error })

@@ -1,23 +1,28 @@
 body {
-    background-color: #F9F7F7;
+    background-image: url('/images/Dbackground.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
     display: flex;
     flex-direction: column;
     margin: 0;
-    width: 100%;
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    justify-content: center;
+    min-height: 100vh;
+    align-items: center;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;   
 }
 
 .filtering {
     display: flex;
     margin: auto;
-    width: 80%;
+    width: 100%;
     justify-content: end;
     gap: 2px;
 }
 
 button {
     border: 0;
-    background-color: #112d4e;
+  
     padding: 5px;
     padding-inline: -15px;
     border-radius: 5px;
@@ -42,17 +47,33 @@ button {
 }
 
 button:hover {
-    background-color: #0c2037;
+    box-shadow: 0 0 0 rgba(0, 0, 0, 0.1) ;
 }
 
-.diary_main {
-    background-color: #f0f0f0;
-    border-radius: 5px;
-    width: 70%;
-    margin: auto;
-    padding: 5%;
-    box-shadow: 2px 2px 10px 0px #112d4e57;
+button{
+    background: transparent;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: all 1s;
 
+}
+.diary_main {
+    background-image: url('/images/Dbgpage.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    box-sizing: border-box;
+
+}
+.back{
+    width: 30px;
+    margin: auto;
+    height: 30px;
+    object-fit: cover;
+    margin-left: 5px;
+    margin-top: 5px;
 }
 
 .diary_detail {
@@ -71,72 +92,78 @@ button:hover {
 .title_div {
     display: flex;
     width: 100%;
+    align-items: center;
 }
 
 .img_div {
     display: flex;
+    flex-direction: column;
+    position: relative;
     width: 100%;
 }
 
 .bio_div {
     width: 100%;
+    height: 23vh;
+    overflow: scroll;
     display: flex;
     flex-wrap: wrap;
 
 }
+.bio_div textarea{
+    width: 100%;
+    background: transparent;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    resize: none;
+    border: 0;
+    color: black;
+    margin-top: 8px;
+    font-size: 15px;
+    outline: none;
+}
 
 .image {
-    object-fit: contain;
     border-radius: 5px;
-    height: 50vh;
+    height: 35vh;
+    width: 100%;
+    object-fit: cover;
 
 }
 
-.editsection {
+.btn_div{
     display: flex;
-    flex-direction: column;
-    width: 80%;
-    margin: auto;
-    gap: 10px;
-
+    justify-content: end;
+    width: 100%;
+    margin-top: 10px;
 }
-.editsection button{
-
-    padding: 10px;
+.sbbtn{
+    background-color: rgba(255, 255, 255, 0.467);
+    padding-inline: 2%;
+    color: black;
+    
 }
 
 input {
     height: 3vh;
     width: 70%;
-    font-size: 15px;
+    font-size: 18px;
+    font-weight: 700;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     padding: 1%;
+    border: 0;
     outline: none;
-    background-color: #f0f0f0;
-    border: 1px solid black;
-    border-radius: 3px;
+    color: black;
+    background: transparent;
 
 }
 
-textarea {
-    border-radius: 3px;
-    height: 25vh;
-    width: 72%;
-    font-size: 15px;
-    padding: 1%;
-    box-sizing: border-box;
-    text-decoration: underline;
-    background-color: #f0f0f0;
-    text-underline-offset: 5px;
-    resize: none;
-    outline: none;
+#image{
+    display: none;
 }
-
-.editsection div {
-    display: flex;
-    gap: 10px;
-    align-items: end;
-}
-
 .btn {
     height: 5vh;
+}
+::-webkit-scrollbar{
+    width: 0;
+    height: 0;
 }

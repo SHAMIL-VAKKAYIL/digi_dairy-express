@@ -12,6 +12,8 @@
 </style>
 
 <body>
+    <img src="/images/backbtn.png" class="back" onclick="back()" alt="">
+
     <div class="main">
         <h1>
             manage profile
@@ -26,9 +28,10 @@
             <img src="/images/emailP.png" alt="">
             <p id="pemail">{{email}} </p>
         </div>
-        <div class="Uitem">
+        <div class="UitemP">
             <img src="/images/passwordP.png" alt="">
-            <p id="ppass">{{password}} </p>
+            <input type="password" id="ppass" value="{{password}}" disabled>
+            <button type="button" onclick="showpass()"><img src="/images/openeye.png" id="icon" alt=""></button>
         </div>
         {{/each}}
         <br><br>
@@ -40,17 +43,17 @@
         <br><br>
         <div id="edSection" style="display:none ;">
             <div>
-                <input type="text" name="" value="" id="newname">
+                <input class="inp" type="text" name="" value="" id="newname">
                 <button type="button" onclick="Nsubmit()">Change Name</button>
             </div>
             <br>
             <div>
-                <input type="email" name="" id="newemail" placeholder="new email">
+                <input class="inp" type="email" name="" id="newemail" placeholder="new email">
                 <button type="button" onclick="Esubmit()">Change email</button>
             </div>
             <br>
             <div>
-                <input type="text" name="" placeholder="new password" id="newpass">
+                <input class="inp" type="text" name="" placeholder="new password" id="newpass">
                 <button type="button" onclick="Psubmit()">Change Passowrd</button>
             </div>
 
@@ -63,13 +66,30 @@
 
         const pemail = document.getElementById('pemail').innerText
         document.getElementById('newemail').value = pemail
-        
+
         const ppass = document.getElementById('ppass').innerText
         document.getElementById('newpass').value = ppass
 
         const edit = () => {
             document.getElementById('edSection').style.display = 'block'
         }
+        function showpass() {
+            const passwordField = document.getElementById('ppass');
+            const eyeIcon = document.getElementById('icon');
+
+            if (passwordField.type === 'password') {
+                passwordField.type = 'text';
+                eyeIcon.src = '/images/closeeye.png';
+            } else {
+                passwordField.type = 'password';
+                eyeIcon.src = '/images/openeye.png';
+            }
+        }
+        const back = () => {
+            window.history.back()
+        }
+
+
 
         const Nsubmit = async () => {
             const newname = document.getElementById('newname').value
