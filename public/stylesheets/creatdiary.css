@@ -7,7 +7,7 @@ body {
     flex-direction: column;
     margin: 0;
     justify-content: center;
-    min-height: auto;
+    min-height: 100vh;
     align-items: center;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
@@ -23,19 +23,19 @@ body {
 
 
 .diary {
-
-        background-image: url('/images/Dbgpage.jpg');
-        background-position: center;
-        background-repeat: no-repeat;
-        background-size: cover;
-        padding: 20px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        max-width: 50%;
-        width: 100%;
-        border-bottom: 20px;
-        box-sizing: border-box;
-    
+    background-image: url('/images/Dbgpage.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 50%;
+    width: 100%;
+    border-bottom: 20px;
+    box-sizing: border-box;
+    margin-bottom: 20px;   
 }
+
 .date_div {
     display: flex;
     align-items: center;
@@ -90,7 +90,6 @@ button{
     border:0;
     border-radius: 5px;
     background: rgba(255, 255, 255, 0.467);
-    width: 12%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -127,4 +126,10 @@ button{
 ::-webkit-scrollbar{
     width: 0;
     height: 0;
+}
+
+@media (max-width:768px){
+    .diary{
+        max-width: 90%;
+    }
 }
