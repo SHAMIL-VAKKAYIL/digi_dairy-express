@@ -47,7 +47,7 @@ router.get('/viewDiary', auth, async (req, res) => {
         const diary = await diarySchema.find({ userid: userid })
         const diaries = diary.reverse()
 
-        res.render('viewDiary', { diaries })
+        res.render('viewDiary', { diaries  })
     } catch (error) {
         res.status(400).json({ message: error })
     }

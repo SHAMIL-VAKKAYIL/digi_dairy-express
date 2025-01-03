@@ -16,7 +16,7 @@
     <div class="main">
         <h1>
             manage profile
-            <button class="btn" onclick="edit()" class="edit"><img src="/images/edit2.png"  alt=""></button><br>
+            <button class="eye" onclick="edit()" class="edit"><img src="/images/edit2.png"  alt=""></button><br>
         </h1>
         {{#each user}}
         <div class="Uitem">
@@ -30,7 +30,7 @@
         <div class="UitemP">
             <img src="/images/passwordP.png" alt="">
             <input type="password" id="ppass" value="{{password}}" disabled>
-            <button class="btn" type="button" onclick="showpass()"><img src="/images/openeye.png" id="icon" alt=""></button>
+            <div class="eye" onclick="showpass()"><img src="/images/openeye.png" id="icon" alt=""></div>
         </div>
         {{/each}}
         <br><br>

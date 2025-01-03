@@ -137,3 +137,20 @@ input{
     outline: 0;
     background: transparent;
 }
+.eye{
+    border: 1px solid rgba(0, 0, 0, 0.233);
+    padding-inline: 5px;
+    border-radius: 5px;
+}
+.eye img{
+    width: 20px;
+    object-fit: cover;
+    cursor: pointer;
+    margin: auto;
+}
+
+@media (max-width: 768px) {
+    .main {
+        width: 80%;
+    }
+}

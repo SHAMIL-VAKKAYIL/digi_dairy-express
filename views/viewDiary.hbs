@@ -29,6 +29,7 @@
 
 
         <div class="diary_main">
+            
             {{#each diaries}}
             <div class="diary_card">
                 <a class="diary_card_details" onclick="getId(event)" data-id="{{_id}}">
@@ -57,6 +58,7 @@
             e.currentTarget.href = `/Diary?id=${DiaryId}`
             console.log(DiaryId, 'id')
         }
+        
         const back = () => {
             window.history.back()
         }

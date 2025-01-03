@@ -8,7 +8,7 @@ body {
     margin: 0;
     justify-content: center;
     min-height: 100vh;
-    align-items: center;
+    /* align-items: center; */
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;   
 }
 
@@ -63,7 +63,8 @@ button{
     background-size: cover;
     padding: 20px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    width: 100%;
+    width: 60%;
+    margin: auto;
     box-sizing: border-box;
 
 }
@@ -166,4 +167,11 @@ input {
 ::-webkit-scrollbar{
     width: 0;
     height: 0;
+}
+
+@media (max-width: 768px) {
+    .diary_main {
+        width: 85%;
+        margin: auto;
+    }
 }

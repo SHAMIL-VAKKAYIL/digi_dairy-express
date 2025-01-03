@@ -6,9 +6,10 @@ var logger = require('morgan');
 const mongoose = require('mongoose');
 const session = require("express-session")
 const Mongostore = require("connect-mongo")
-const {  authRouter } = require('./routes/authRouter');
-const   homeRouter  = require('./routes/homeRouter')
-const dairyRouter =require('./routes/dairyRouter')
+const { authRouter } = require('./routes/authRouter');
+const homeRouter = require('./routes/homeRouter')
+const dairyRouter = require('./routes/dairyRouter')
+require('dotenv').config()
 
 
 var app = express();
@@ -23,7 +24,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-mongoose.connect('mongodb://localhost:27017/Digitaldairy')
+mongoose.connect(process.env.MONGO_URL)
   .then(() => {
     console.log('connected');
   }).catch((err) => {
@@ -32,11 +33,11 @@ mongoose.connect('mongodb://localhost:27017/Digitaldairy')
 
 app.use(
   session({
-    secret: 'dlfhgnlkehdf',
+    secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: true,
     store: Mongostore.create({
-      mongoUrl: 'mongodb://localhost:27017/Digitaldairy',
+      mongoUrl: process.env.MONGO_URL,
       collectionName: 'session'
     }),
     cookie: {
@@ -48,7 +49,7 @@ app.use(
 
 app.use('/', authRouter)
 app.use('/', homeRouter)
-app.use('/',dairyRouter)
+app.use('/', dairyRouter)
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
@@ -64,6 +65,11 @@ app.use(function (err, req, res, next) {
   // render the error page
   res.status(err.status || 500);
   res.render('error');
+});
+const PORT = 3000; // Choose your desired port
+app.listen(PORT, '0.0.0.0', () => {
+  console.log(`Server is running and accessible at http://localhost:${PORT}`);
+  console.log(`Access from other devices on the network: http://192.168.161.251:${PORT}`);
 });
 
 module.exports = app;
